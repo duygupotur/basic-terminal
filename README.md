@@ -1,2 +1,2 @@
 # basic-terminal
-# python3, gtk
+python3, gtk
