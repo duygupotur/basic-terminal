@@ -29,9 +29,9 @@ class Terminal01(Gtk.Window):
         for prog_language in ["Komut Gönder", "Yol Bul", "None"]:
             button = Gtk.Button(prog_language)
             self.buttons.append(button)
-            if prog_language=="RunCommand":
+            if prog_language=="Komut Gönder":
                 button.connect("clicked", self.InputToTerm)
-            elif prog_language=="GetPath":
+            elif prog_language=="Yol Bul":
                 button.connect("clicked", self.gettoPath)
             else:
                 button.connect("clicked", self.gettoPath)
@@ -60,7 +60,11 @@ class Terminal01(Gtk.Window):
 
     def InputToTerm(self, clicker):
         length = len(self.command)
-        self.terminal.feed_child(self.command, length)
+        ### gtk
+        ### TypeError: Vte.Terminal.feed_child() takes exactly 2 arguments (3 given)
+        # self.terminal.feed_child_binary(self.command.encode("utf-8"))
+        ## xfce
+        self.terminal.feed_child_binary(self.command, length)
 
     def gettoPath(self, clicker):
         test=self.terminal.get_window_title()
